@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{683783B8-E218-4CCB-8CE0-756DDC74ED06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GameEngine</RootNamespace>
+    <AssemblyName>GameEngine</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Advertisement\AdServiceProvider.cs" />
+    <Compile Include="Advertisement\IAdService.cs" />
+    <Compile Include="Audio\AudioOptions.cs" />
+    <Compile Include="CameraEngine\Camera.cs" />
+    <Compile Include="CameraEngine\CameraFingerControl.cs" />
+    <Compile Include="CameraEngine\CameraOptions.cs" />
+    <Compile Include="CameraEngine\ShakeScreen.cs" />
+    <Compile Include="CameraEngine\Zoomer.cs" />
+    <Compile Include="Collisions\CollisionGameObject.cs" />
+    <Compile Include="Content\ContentLoader.cs" />
+    <Compile Include="Content\FontManager.cs" />
+    <Compile Include="Content\TextureManager.cs" />
+    <Compile Include="Effects\Break\PartTextureDisolve.cs" />
+    <Compile Include="Effects\Break\TextureBreak.cs" />
+    <Compile Include="Effects\EffectManager.cs" />
+    <Compile Include="Effects\Explosions\ExplosionBox.cs" />
+    <Compile Include="Effects\Explosions\ExplosionBoxes.cs" />
+    <Compile Include="Effects\Shapes\ShapeDrawing.cs" />
+    <Compile Include="Effects\Tail\TextureSender.cs" />
+    <Compile Include="Effects\TextureDisolve.cs" />
+    <Compile Include="Input\AccelerometterInput.cs" />
+    <Compile Include="Input\GameControls\TouchInput\TouchControl.cs" />
+    <Compile Include="Input\InputOptions.cs" />
+    <Compile Include="Input\TouchPanel\MyState.cs" />
+    <Compile Include="Input\TouchPanel\MyTouch.cs" />
+    <Compile Include="MathEngine\CollectionHelpers.cs" />
+    <Compile Include="MathEngine\MyMath.cs" />
+    <Compile Include="Menu\DisplayFramerate.cs" />
+    <Compile Include="Menu\Screens\IScreenParentObject.cs" />
+    <Compile Include="Menu\Screens\MainScreenAttribute.cs" />
+    <Compile Include="RunBasics\GameLogicAssembly.cs" />
+    <Compile Include="RunBasics\GameManager.cs" />
+    <Compile Include="Menu\IDrawParent.cs" />
+    <Compile Include="Menu\Screens\ScreenPattern.cs" />
+    <Compile Include="Menu\Screens\Buttons\ScreenButton.cs" />
+    <Compile Include="Menu\Screens\Buttons\ScreenTextButton.cs" />
+    <Compile Include="Menu\Screens\Buttons\ScreenButtonSignalizing.cs" />
+    <Compile Include="Menu\Screens\Buttons\ScreenIconButton.cs" />
+    <Compile Include="Menu\Screens\IMenuScreenElement.cs" />
+    <Compile Include="Menu\Screens\IShowController.cs" />
+    <Compile Include="Menu\Screens\MenuScreen.cs" />
+    <Compile Include="RunBasics\MenuScreenManager.cs" />
+    <Compile Include="Menu\Screens\MessageBox\MBBackground.cs" />
+    <Compile Include="Menu\Screens\MessageBox\MBButton.cs" />
+    <Compile Include="Menu\Screens\MessageBox\MbScreenText.cs" />
+    <Compile Include="Menu\Screens\MessageBox\MessageBox.cs" />
+    <Compile Include="Menu\Screens\ScreenContainer.cs" />
+    <Compile Include="Menu\Screens\ScreenSlider.cs" />
+    <Compile Include="Menu\Screens\ScreenTexture.cs" />
+    <Compile Include="Menu\Screens\ScreenTextureContainer.cs" />
+    <Compile Include="Menu\Screens\Texts\ScreenBumpText.cs" />
+    <Compile Include="Menu\Screens\Texts\ScreenText.cs" />
+    <Compile Include="Menu\Screens\TextureObjects\RotatingTexture.cs" />
+    <Compile Include="Menu\Screens\TextureObjects\ScreenCover.cs" />
+    <Compile Include="Menu\ShowTimer.cs" />
+    <Compile Include="Options\DisplayOptions.cs" />
+    <Compile Include="Options\GeneralOptions.cs" />
+    <Compile Include="Pixel\Collision\CollisionPixel.cs" />
+    <Compile Include="Pixel\Collision\CollisionPixelObject.cs" />
+    <Compile Include="Pixel\Collision\CollisionPixelEnvironment.cs" />
+    <Compile Include="Pixel\PixelDescribtion.cs" />
+    <Compile Include="Pixel\PixelMath.cs" />
+    <Compile Include="Pixel\BasicPixelObject.cs" />
+    <Compile Include="Pixel\PixelOptions.cs" />
+    <Compile Include="Pixel\Simple\SimplePixel.cs" />
+    <Compile Include="Pixel\Simple\SimplePixelObject.cs" />
+    <Compile Include="Primitives\BaseObject.cs" />
+    <Compile Include="Primitives\ContainerGameObject.cs" />
+    <Compile Include="Primitives\EffectMakingObject.cs" />
+    <Compile Include="Primitives\GameObject.cs" />
+    <Compile Include="Primitives\IBaseElement.cs" />
+    <Compile Include="Primitives\IEffectObject.cs" />
+    <Compile Include="Primitives\IGameElement.cs" />
+    <Compile Include="Primitives\IGameObject.cs" />
+    <Compile Include="Primitives\TextObject.cs" />
+    <Compile Include="Primitives\TextureObject.cs" />
+    <Compile Include="Primitives\VelocityObject.cs" />
+    <Compile Include="PropertiesEngine\MyColor.cs" />
+    <Compile Include="PropertiesEngine\MyTexture.cs" />
+    <Compile Include="PropertiesEngine\PrpertiesMath.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueHolders\AngleHolder.cs" />
+    <Compile Include="ValueHolders\MyColorChanger.cs" />
+    <Compile Include="ValueHolders\MyValue.cs" />
+    <Compile Include="ValueHolders\PositionHolder.cs" />
+    <Compile Include="ValueHolders\ScaleHolder.cs" />
+    <Compile Include="ValueHolders\SignalValue.cs" />
+    <Compile Include="ValueHolders\SignalValueUser.cs" />
+    <Compile Include="ValueHolders\SmoothValue.cs" />
+    <Compile Include="ValueHolders\SmoothVector.cs" />
+    <Compile Include="ValueHolders\Timer.cs" />
+    <Compile Include="ValueHolders\ValueHolder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FarseerPhysics.Portable, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\MrGunman\packages\FarseerPhysics.Portable.3.5.1\lib\portable-net4+sl4+wp8+win8\FarseerPhysics.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Android\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLExt.AppDomain, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\PixelMapCreator\packages\PCLExt.AppDomain.1.0.13\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLExt.AppDomain.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLExt.AppDomain.Abstractions, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\PixelMapCreator\packages\PCLExt.AppDomain.1.0.13\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLExt.AppDomain.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\BoxVsBlocks\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\BoxVsBlocks\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\BoxVsBlocks\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\BoxVsBlocks\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\PixelMapCreator\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+</Project>
