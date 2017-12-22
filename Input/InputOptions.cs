@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameEngine.Input.TouchPanel;
+using Microsoft.Xna.Framework;
 
 namespace GameEngine.Input
 {

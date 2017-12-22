@@ -1,21 +1,21 @@
-﻿using GameEngine.CameraEngine;
+﻿using GameEngine.GamePrimitives;
 using GameEngine.MathEngine;
-using GameEngine.Primitives;
+using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Effects.Explosions
 {
-	public class ExplosionBoxes : ContainerGameObject
+	public sealed class ExplosionBoxes : ContainerGameObject
 	{
-		public ExplosionBoxes(Camera camera, Vector2 position, float boxSideSize, int boxesCount, float distance, IParentObject parent = null)
-			: base(camera, position, Vector2.Zero, parent)
+		public ExplosionBoxes(BasicLevel level, Vector2 position, float boxSideSize, int boxesCount, float distance, IWorldObject parent = null)
+			: base(level, position, Vector2.Zero, parent)
 		{
 			// Creates boxes
-			float span = MathHelper.TwoPi / boxesCount;
-			for (int i = 0; i < boxesCount; i++)
+			var span = MathHelper.TwoPi / boxesCount;
+			for (var i = 0; i < boxesCount; i++)
 			{
-				float direction = MyMath.GetRandomAngle(span) + i * span;
-				ExplosionBox box = new ExplosionBox(camera, position, boxSideSize, direction, distance * MyMath.GetRandomFloat(0.8f, 1.2f));
+				var direction = MyMath.GetRandomAngle(span) + i * span;
+				var box = new ExplosionBox(level, position, boxSideSize, direction, distance * MyMath.GetRandomFloat(0.8f, 1.2f));
 				AddObject(box);
 			}
 		}

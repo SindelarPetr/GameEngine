@@ -1,11 +1,9 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Menu.Screens;
 using GameEngine.Options;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Menu.ScreensAs.TextureObjects
+namespace GameEngine.Menu.Screens.TextureObjects
 {
 	public class RotatingTexture : ScreenTextureContainer
 	{

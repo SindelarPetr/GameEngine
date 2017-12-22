@@ -1,7 +1,7 @@
-﻿using GameEngine.CameraEngine;
+﻿using GameEngine.GamePrimitives;
+using GameEngine.ObjectPrimitives;
 using GameEngine.Options;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Effects.Tail
@@ -24,8 +24,8 @@ namespace GameEngine.Effects.Tail
 		public float Direction { get; set; }
 		public float Velocity { get; set; }
 
-		public TextureSender(Camera camera, BaseObject owner, int frequency, Vector2 size, float velocity = 0.1f, IParentObject parent = null, MyTexture2D texture = null)
-			: base(camera, owner.BasicPosition, size, parent, texture)
+		public TextureSender(BasicLevel level, BaseObject owner, int frequency, Vector2 size, float velocity = 0.1f, IWorldObject parent = null, MyTexture2D texture = null)
+			: base(level, owner.BasicPosition, size, parent, texture)
 		{
 			_owner = owner;
 			Frequency = frequency;
@@ -51,7 +51,7 @@ namespace GameEngine.Effects.Tail
 
 		private void GeneratePart()
 		{
-			var part = new TextureDisolve(Camera, _owner.GetLocalPosition(), BasicSize, this,
+			var part = new TextureDisolve(Level, _owner.GetLocalPosition(), BasicSize, this,
 				Velocity, _owner.GetLocalRotation() + MathHelper.PiOver2, 0, Texture);
 			part.ColorChanger.ResetColor(ColorChanger);
 			part.SmoothOpacity.Friction = SmoothOpacity.Friction;

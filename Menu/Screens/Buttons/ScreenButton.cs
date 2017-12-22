@@ -1,15 +1,14 @@
 ﻿using GameEngine.CameraEngine;
 using GameEngine.Input;
+using GameEngine.Input.TouchPanel;
 using GameEngine.MathEngine;
 using GameEngine.Options;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
-using GameEngine.Menu.Screens;
 
-namespace GameEngine.Menu.ScreensAs.Buttons
+namespace GameEngine.Menu.Screens.Buttons
 {
 	public class ScreenButton : ScreenTextureContainer
 	{
@@ -39,7 +38,7 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 		public bool Enabled { get; private set; }
 
 		public bool IsClickable { get; protected set; }
-		public bool IsTouchable { get; protected set; }
+		public bool IsTouchable { get; set; }
 		public bool IsTouchBlocking { get; private set; }
 
 		private MyTouch _blockedMouse;
@@ -53,14 +52,11 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 		protected bool IsDragging { get; private set; }
 		public bool IsDraggingAllowed { get; set; }
 
-		private float _dragStartDistance = 10;
+		private readonly float _dragStartDistance = 10;
 		private Vector2 _startDragPosition;
 
 		// For dragging for higher steps than default.
 		protected Vector2 DragBuffer { get; set; }
-
-		public bool IsFingerControl { get; set; }
-
 		#endregion
 
 		#region Events
@@ -75,6 +71,7 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 		public event Action<Color> OnColorChanged;
 		#endregion
 
+		#region Constructors
 		public ScreenButton(Camera camera, Func<Vector2> positionProvider, Func<Vector2> sizeProvider, IScreenParentObject parent = null,
 			MyTexture2D texture = null)
 			: base(camera, positionProvider, sizeProvider, parent, texture)
@@ -97,6 +94,7 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 
 			ChangeColor((MyColor)Color.Blue);
 		}
+		#endregion
 
 		public override void Update()
 		{
@@ -195,26 +193,24 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 
 		private void TryReleaseMouseBlock()
 		{
-			if (_blockedMouse != null && _blockedMouse.State == TouchState.Relased)
-			{
-				_blockedMouse.SetAsNotOwned();
-				_blockedMouse = null;
-			}
+			if (_blockedMouse == null || _blockedMouse.State != TouchState.Relased) return;
+
+			_blockedMouse.SetAsNotOwned();
+			_blockedMouse = null;
 		}
 
 		private void BlockTouches()
 		{
-			if (IsTouchBlocking && Touch != null)
-			{
-				MyTouch touch;
-				do
-				{
-					touch = GetTouch();
-				} while (touch != null);
+			if (!IsTouchBlocking || Touch == null) return;
 
-				if (_blockedMouse == null)
-					_blockedMouse = GetMouse();
-			}
+			MyTouch touch;
+			do
+			{
+				touch = GetTouch();
+			} while (touch != null);
+
+			if (_blockedMouse == null)
+				_blockedMouse = GetMouse();
 		}
 
 		private MyTouch GetTouch()
@@ -358,7 +354,7 @@ namespace GameEngine.Menu.ScreensAs.Buttons
 		#endregion
 
 		#region Enability
-		public override void Show(IMenuScreenElement showInitializator = null)
+		public override void Show(IScreenObject showInitializator = null)
 		{
 			Enabled = true;
 

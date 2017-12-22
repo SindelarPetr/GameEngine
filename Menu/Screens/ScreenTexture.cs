@@ -1,31 +1,30 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.ObjectPrimitives;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using System;
-using GameEngine.Menu.Screens;
 
-namespace GameEngine.Menu.ScreensAs
+namespace GameEngine.Menu.Screens
 {
-	public class ScreenTexture : TextureObject, IMenuScreenElement
+	public class ScreenTexture : TextureObject, IScreenObject
 	{
 		protected readonly Func<Vector2> PositionProvider;
 		protected readonly Func<Vector2> SizeProvider;
 
-		public ScreenTexture(Camera camera, Func<Vector2> positionProvider, Func<Vector2> sizeProvider, IParentObject parent = null, MyTexture2D texture = null)
+		public ScreenTexture(Camera camera, Func<Vector2> positionProvider, Func<Vector2> sizeProvider, IWorldObject parent = null, MyTexture2D texture = null)
 			: this(camera, positionProvider.Invoke(), sizeProvider.Invoke(), parent, texture)
 		{
 			PositionProvider = positionProvider;
 			SizeProvider = sizeProvider;
 		}
 
-		public ScreenTexture(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null, MyTexture2D texture = null)
+		public ScreenTexture(Camera camera, Vector2 position, Vector2 size, IWorldObject parent = null, MyTexture2D texture = null)
 			: base(camera, position, size, parent, texture) { }
 
 
 		public void AllScreensLoaded()
 		{
-			
+
 		}
 
 		public void LooseTouches()
@@ -33,9 +32,9 @@ namespace GameEngine.Menu.ScreensAs
 
 		}
 
-		public void Show(IMenuScreenElement showInitializator)
+		public void Show(IScreenObject showInitializator)
 		{
-			
+
 		}
 
 		public void Hide()

@@ -1,8 +1,8 @@
 ﻿using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
-using GameEngine.CameraEngine;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.GamePrimitives;
+using GameEngine.ObjectPrimitives;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Collisions
@@ -40,7 +40,7 @@ namespace GameEngine.Collisions
 			private set => Body.Enabled = value;
 		}
 
-		public CollisionGameObject(Camera camera, World world, Vector2 position, Vector2 size, IParentObject parent = null, MyTexture2D texture = null, BodyShape bodyShape = BodyShape.Rectangle) : base(camera, position, size, parent, texture)
+		public CollisionGameObject(BasicLevel level, World world, Vector2 position, Vector2 size, IWorldObject parent = null, MyTexture2D texture = null, BodyShape bodyShape = BodyShape.Rectangle) : base(level, position, size, parent, texture)
 		{
 			if (bodyShape == BodyShape.Rectangle)
 				Body = BodyFactory.CreateRectangle(world, size.X / 100f, size.Y / 100f, 1, position / 100f, 0, BodyType.Dynamic,

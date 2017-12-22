@@ -1,8 +1,8 @@
-﻿using GameEngine.Primitives;
+﻿using GameEngine.ObjectPrimitives;
 
 namespace GameEngine.Menu.Screens
 {
-	public interface IScreenParentObject : IParentObject
+	public interface IScreenParentObject : IWorldObject
 	{
 
 		/// <summary>

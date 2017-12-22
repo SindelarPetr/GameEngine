@@ -1,4 +1,4 @@
-﻿using GameEngine.Properties;
+﻿using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Menu

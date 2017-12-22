@@ -1,10 +1,8 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Menu.Screens;
-using GameEngine.Primitives;
 using GameEngine.ValueHolders;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Menu.ScreensAs.Buttons
+namespace GameEngine.Menu.Screens.Buttons
 {
 	public class ScreenButtonSignalizing : ScreenTextButton
 	{

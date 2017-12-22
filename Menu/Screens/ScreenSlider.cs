@@ -1,12 +1,11 @@
 ﻿using GameEngine.CameraEngine;
 using GameEngine.MathEngine;
-using GameEngine.Menu.ScreensAs;
-using GameEngine.Menu.ScreensAs.Buttons;
-using GameEngine.Primitives;
-using GameEngine.Properties;
 using Microsoft.Xna.Framework;
 using System;
 using GameEngine.Input;
+using GameEngine.Input.TouchPanel;
+using GameEngine.Menu.Screens.Buttons;
+using GameEngine.PropertiesEngine;
 
 namespace GameEngine.Menu.Screens
 {
@@ -27,7 +26,7 @@ namespace GameEngine.Menu.Screens
 			}
 		}
 
-		private ScreenTexture _slider;
+		private readonly ScreenTexture _slider;
 
 		public event Action<double> OnValueChanged;
 

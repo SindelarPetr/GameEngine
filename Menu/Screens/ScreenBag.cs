@@ -1,20 +1,16 @@
 ﻿using GameEngine.CameraEngine;
 using GameEngine.MathEngine;
-using GameEngine.Menu.Screens;
+using GameEngine.ObjectPrimitives;
 using GameEngine.Options;
-using GameEngine.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameEngine.Menu.ScreensAs
+namespace GameEngine.Menu.Screens
 {
-	/// <summary>
-	/// TODO: Solve enable and disable animations
-	/// </summary>
-	public class ScreenContainer : BaseObject, IMenuScreenElement, IScreenParentObject
+	public class ScreenBag : BaseObject, IScreenObject, IScreenParentObject
 	{
 		#region Constants
 
@@ -22,28 +18,28 @@ namespace GameEngine.Menu.ScreensAs
 		#endregion
 
 		#region Show animation
-		public override Vector2 GetGamePosition()
+		public override Vector2 GetWorldPosition()
 		{
-			return base.GetGamePosition() + ShowValuePosition;
+			return base.GetWorldPosition() + ShowValuePosition;
 		}
 		protected Vector2 ShowValuePosition => Vector2.Zero;
 		protected Vector2 ShowValuePositionShift => new Vector2(0, DisplayOptions.Resolution.Y / 5f);
 
-		public override float GetGameOpacity()
+		public override float GetWorldOpacity()
 		{
-			return base.GetGameOpacity() * ShowValueOpacity;
+			return base.GetWorldOpacity() * ShowValueOpacity;
 		}
 		protected virtual float ShowValueOpacity => GetShowValue();
 
-		public override float GetGameRotation()
+		public override float GetWorldRotation()
 		{
-			return base.GetGameRotation() * ShowValueRotation;
+			return base.GetWorldRotation() * ShowValueRotation;
 		}
 		protected virtual float ShowValueRotation => 1;
 
-		public override Vector2 GetGameScale()
+		public override Vector2 GetWorldScale()
 		{
-			return base.GetGameScale() * ShowValueScale;
+			return base.GetWorldScale() * ShowValueScale;
 		}
 		protected virtual Vector2 ShowValueScale => Vector2.One;
 		#endregion
@@ -51,7 +47,7 @@ namespace GameEngine.Menu.ScreensAs
 		/// <summary>
 		/// List of nested objects and its draw order for updating and drawing. Draw order tells when the object should be drawed (lower will be drawn earlier). Generally I consider draw order 3 as a middle and 1, 2 as bottom layer and 4 and 5 as upper layer. I don't recommend to use too many of different draw orders.
 		/// </summary>
-		private List<KeyValuePair<int, IMenuScreenElement>> _nestedObjects;
+		private List<KeyValuePair<int, IScreenObject>> _nestedObjects;
 
 		#region Show timer
 		private ShowTimer _showTimer;
@@ -68,11 +64,11 @@ namespace GameEngine.Menu.ScreensAs
 
 		#region Events
 
-		public event Action<KeyValuePair<int, IMenuScreenElement>> OnNestedObjectAdded;
-		public event Action<IMenuScreenElement> OnNestedObjectRemoved;
+		public event Action<KeyValuePair<int, IScreenObject>> OnNestedObjectAdded;
+		public event Action<IScreenObject> OnNestedObjectRemoved;
 		#endregion
 
-		public ScreenContainer(Camera camera, Func<Vector2> positionProvider, Func<Vector2> sizeProvider,
+		public ScreenBag(Camera camera, Func<Vector2> positionProvider, Func<Vector2> sizeProvider,
 			IScreenParentObject parent = null)
 			: this(camera, positionProvider.Invoke(), sizeProvider.Invoke(), parent)
 		{
@@ -82,27 +78,27 @@ namespace GameEngine.Menu.ScreensAs
 			Initialize(out _nestedObjects);
 		}
 
-		public ScreenContainer(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null)
+		public ScreenBag(Camera camera, Vector2 position, Vector2 size, IScreenParentObject parent = null)
 			: base(camera, position, size, parent)
 		{
 			Initialize(out _nestedObjects);
 		}
 
-		private void Initialize(out List<KeyValuePair<int, IMenuScreenElement>> nestedObjects)
+		private void Initialize(out List<KeyValuePair<int, IScreenObject>> nestedObjects)
 		{
 			_showTimer = new ShowTimer(DEFAULT_SHOWING_TIME);
-			nestedObjects = new List<KeyValuePair<int, IMenuScreenElement>>();
+			nestedObjects = new List<KeyValuePair<int, IScreenObject>>();
 		}
 
-		protected void AddNestedObject(IMenuScreenElement nestedObject, int drawOrder)
+		protected void AddNestedObject(IScreenObject nestedObject, int drawOrder)
 		{
-			var pair = new KeyValuePair<int, IMenuScreenElement>(drawOrder, nestedObject);
+			var pair = new KeyValuePair<int, IScreenObject>(drawOrder, nestedObject);
 			_nestedObjects.Add(pair);
 			_nestedObjects = _nestedObjects.OrderByDescending(p => p.Key).ToList();
 			OnNestedObjectAdded?.Invoke(pair);
 		}
 
-		protected void RemoveNestedObject(IMenuScreenElement nestedObject)
+		protected void RemoveNestedObject(IScreenObject nestedObject)
 		{
 			var index = _nestedObjects.FindIndex(p => p.Value == nestedObject);
 			if (index == -1)
@@ -113,7 +109,7 @@ namespace GameEngine.Menu.ScreensAs
 			OnNestedObjectRemoved?.Invoke(obj);
 		}
 
-		public void ForEachNestedObjects(Action<IMenuScreenElement> action)
+		public void ForEachNestedObjects(Action<IScreenObject> action)
 		{
 			_nestedObjects.ForEach(p => action(p.Value));
 		}
@@ -124,22 +120,16 @@ namespace GameEngine.Menu.ScreensAs
 
 			_showTimer.Reverse();
 
-			foreach (var obj in _nestedObjects)
-			{
-				obj.Value.Hide();
-			}
+			_nestedObjects.ForEach(o => o.Value.Hide());
 		}
 
-		public virtual void Show(IMenuScreenElement showInitializator = null)
+		public virtual void Show(IScreenObject showInitializator = null)
 		{
 			if (IsShowed) return;
 
 			_showTimer.Reverse();
 
-			foreach (var obj in _nestedObjects)
-			{
-				obj.Value.Show(showInitializator);
-			}
+			_nestedObjects.ForEach(o => o.Value.Show(showInitializator));
 		}
 
 		public virtual void AllScreensLoaded()
@@ -149,10 +139,7 @@ namespace GameEngine.Menu.ScreensAs
 
 		public virtual void LooseTouches()
 		{
-			foreach (var obj in _nestedObjects)
-			{
-				obj.Value.LooseTouches();
-			}
+			_nestedObjects.ForEach(o => o.Value.LooseTouches());
 		}
 
 		public virtual void ResolutionChanged()
@@ -163,10 +150,7 @@ namespace GameEngine.Menu.ScreensAs
 			if (SizeProvider != null)
 				BasicSize = SizeProvider.Invoke();
 
-			foreach (var obj in _nestedObjects)
-			{
-				obj.Value.ResolutionChanged();
-			}
+			_nestedObjects.ForEach(o => o.Value.ResolutionChanged());
 		}
 
 		public float GetShowValue()
@@ -176,7 +160,7 @@ namespace GameEngine.Menu.ScreensAs
 
 		public override void Update()
 		{
-			if(IsHidden) return;
+			if (IsHidden) return;
 
 			ForEachNestedObjects(o => o.Update());
 
@@ -186,7 +170,7 @@ namespace GameEngine.Menu.ScreensAs
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			if(IsHidden) return;
+			if (IsHidden) return;
 
 			for (var i = _nestedObjects.Count - 1; i >= 0; i--)
 			{

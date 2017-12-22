@@ -1,15 +1,15 @@
 ﻿using FarseerPhysics.Dynamics;
-using GameEngine.CameraEngine;
-using GameEngine.Primitives;
+using GameEngine.GamePrimitives;
+using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Pixel
+namespace GameEngine.Pixel.Collision
 {
 	public class CollisionPixelObject : BasicPixelObject
 	{
 		private readonly World _world;
 
-		public CollisionPixelObject(Camera camera, World world, Vector2 position, PixelDescription[,] pixelsDescription, Vector2 pixelsCount, IParentObject parent = null) : base(camera, position, pixelsDescription, pixelsCount, parent)
+		public CollisionPixelObject(BasicLevel level, World world, Vector2 position, PixelDescription[,] pixelsDescription, Vector2 pixelsCount, IWorldObject parent = null) : base(level, position, pixelsDescription, pixelsCount, parent)
 		{
 			_world = world;
 			Pixels = CreatePixels(pixelsDescription);
@@ -26,11 +26,9 @@ namespace GameEngine.Pixel
 
 					if (pixelDescribtion == null) continue;
 
-					//if ((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) pixelDescribtion = new PixelDescribtion(Color.Aqua);
-
 					var pixelIndex = new Vector2(x, y);
 					CollisionPixel pixel;
-					pixels[x, y] = pixel = new CollisionPixel(Camera, _world,
+					pixels[x, y] = pixel = new CollisionPixel(Level, _world,
 						PixelMath.PixelToGamePosition(pixelIndex, PixelsCount), PixelOptions.PixelSize);
 					PixelCreated(pixel);
 					// Change pixels color according to description.

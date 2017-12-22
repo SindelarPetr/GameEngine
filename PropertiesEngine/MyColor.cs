@@ -1,8 +1,8 @@
-using GameEngine.MathEngine;
 using System;
+using GameEngine.MathEngine;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Properties
+namespace GameEngine.PropertiesEngine
 {
 	public class MyColor
 	{

@@ -1,7 +1,7 @@
-﻿using GameEngine.CameraEngine;
-using GameEngine.Content;
+﻿using GameEngine.Content;
+using GameEngine.GamePrimitives;
 using GameEngine.MathEngine;
-using GameEngine.Primitives;
+using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Effects.Explosions
@@ -12,10 +12,10 @@ namespace GameEngine.Effects.Explosions
 		private readonly float _distance;
 		private readonly Vector2 _originPosition;
 
-		public ExplosionBox(Camera camera, Vector2 position, float sideSize, float direction, float distance, IParentObject parent = null)
-			: base(camera, position, new Vector2(sideSize), parent, TextureManager.Box2)
+		public ExplosionBox(BasicLevel level, Vector2 position, float sideSize, float direction, float distance, IWorldObject parent = null)
+			: base(level, position, new Vector2(sideSize), parent, TextureManager.Box2)
 		{
-			BasicRotation = _direction = direction;
+			base.BasicRotation = _direction = direction;
 			_distance = distance;
 			_originPosition = position;
 			SmoothOpacity.ValueToGo = 0;

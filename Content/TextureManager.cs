@@ -1,5 +1,5 @@
 
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 
 namespace GameEngine.Content
 {

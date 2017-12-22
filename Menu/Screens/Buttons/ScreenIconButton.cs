@@ -1,11 +1,8 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Menu.Screens;
-using GameEngine.Menu.ScreensAs.Buttons;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Menu
+namespace GameEngine.Menu.Screens.Buttons
 {
 	public class ScreenIconButton : ScreenButton
 	{

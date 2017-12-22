@@ -1,15 +1,15 @@
-﻿using GameEngine.CameraEngine;
-using GameEngine.Content;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+﻿using GameEngine.Content;
+using GameEngine.GamePrimitives;
+using GameEngine.ObjectPrimitives;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Effects.Tail
+namespace GameEngine.Effects
 {
 	public class TextureDisolve : VelocityObject
 	{
-		public TextureDisolve(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null, float velocity = 0, float direction = 0, float rotationSpeed = 0, MyTexture2D texture = null)
-			: base(camera, position, size, velocity, direction, rotationSpeed, parent, texture ?? TextureManager.Box2)
+		public TextureDisolve(BasicLevel level, Vector2 position, Vector2 size, IWorldObject parent = null, float velocity = 0, float direction = 0, float rotationSpeed = 0, MyTexture2D texture = null)
+			: base(level, position, size, velocity, direction, rotationSpeed, parent, texture ?? TextureManager.Box2)
 		{
 			SmoothOpacity.ValueToGo = 0;
 		}

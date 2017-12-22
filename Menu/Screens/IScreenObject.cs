@@ -1,9 +1,8 @@
-﻿using GameEngine.Menu.Screens;
-using GameEngine.Primitives;
+﻿using GameEngine.ObjectPrimitives;
 
-namespace GameEngine.Menu
+namespace GameEngine.Menu.Screens
 {
-	public interface IMenuScreenElement : IBaseElement
+	public interface IScreenObject : IPrimitiveElement
 	{
 		/// <summary>
 		/// Will be called by MenuScreenManager after all screens are loaded. Should be used for connecting events between menus.
@@ -13,7 +12,7 @@ namespace GameEngine.Menu
 		void LooseTouches();
 
 		//Will be called when MenuScreen will start showing
-		void Show(IMenuScreenElement showInitializator);
+		void Show(IScreenObject showInitializator);
 
 		//Will be called when MenuScreen will start hidding
 		void Hide();

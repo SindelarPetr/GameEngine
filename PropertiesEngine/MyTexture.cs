@@ -2,7 +2,7 @@ using GameEngine.Options;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Properties
+namespace GameEngine.PropertiesEngine
 {
 	public class MyTexture2D
 	{

@@ -1,10 +1,11 @@
-﻿using GameEngine.MathEngine;
-using GameEngine.Menu.ScreensAs.Buttons;
+﻿using GameEngine.Input;
+using GameEngine.MathEngine;
+using GameEngine.Menu.Screens.Buttons;
 using GameEngine.Options;
 using GameEngine.ValueHolders;
 using Microsoft.Xna.Framework;
 using System;
-using GameEngine.Input;
+using GameEngine.Input.TouchPanel;
 
 namespace GameEngine.CameraEngine
 {
@@ -33,8 +34,15 @@ namespace GameEngine.CameraEngine
 		public Vector2 ActualViewMove => _fingerControlViewMove + ShakeScreen.ShakeViewMove + SmoothViewMove;
 		public ShakeScreen ShakeScreen { get; }
 		public SmoothVector SmoothViewMove { get; }
-		//public CameraFingerControl FingerControl { get; }
-		public ScreenButton FingerControl { get; }
+		#region Finger control
+
+		private readonly ScreenButton _fingerControl;
+
+		public void DisableFingerControl()
+		{
+			_fingerControl.IsTouchable = false;
+		}
+		#endregion
 
 		private Vector2 _fingerControlViewMove;
 		#endregion
@@ -51,15 +59,15 @@ namespace GameEngine.CameraEngine
 
 		public event Action<MyTouch> OnClick
 		{
-			add => FingerControl.OnClick += value;
-			remove => FingerControl.OnClick -= value;
+			add => _fingerControl.OnClick += value;
+			remove => _fingerControl.OnClick -= value;
 		}
 
 		public Camera(Vector2? focusedPosition = null)
 		{
 			CreateRotationShaker();
 			ShakeScreen = new ShakeScreen();
-			FingerControl = CreateCameraFingerControl();
+			_fingerControl = CreateCameraFingerControl();
 			Zoomer = new Zoomer(this);
 			SmoothViewMove = new SmoothVector(focusedPosition ?? Vector2.Zero);
 		}
@@ -70,7 +78,6 @@ namespace GameEngine.CameraEngine
 			control.IsFullscreenButton = true;
 			control.IsDraggingAllowed = true;
 			control.OnDragging += ControlOnDragging;
-			control.IsFingerControl = true;
 
 			return control;
 		}
@@ -94,7 +101,7 @@ namespace GameEngine.CameraEngine
 			#region Counting parts of ViewMove
 			ShakeScreen.Update();
 
-			FingerControl.Update();
+			_fingerControl.Update();
 
 			SmoothViewMove.Update();
 			#endregion

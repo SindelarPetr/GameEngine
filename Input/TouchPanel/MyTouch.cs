@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace GameEngine.Input
+namespace GameEngine.Input.TouchPanel
 {
 	public enum TouchState { JustPressed, Continuing, Relased }
 

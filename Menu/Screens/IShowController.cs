@@ -1,4 +1,4 @@
-﻿namespace GameEngine.Menu
+﻿namespace GameEngine.Menu.Screens
 {
 	/// <summary>
 	/// This interface is used in every element managing showing.

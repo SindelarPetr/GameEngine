@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace GameEngine.RunBasics
+namespace GameEngine.RunPrimitives
 {
 	/// <summary>
 	/// This class manages menu screens - when you want to add a new menu screen, you have to add it here.

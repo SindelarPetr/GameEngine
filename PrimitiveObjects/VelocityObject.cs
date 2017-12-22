@@ -1,10 +1,10 @@
-﻿using GameEngine.CameraEngine;
+﻿using GameEngine.GamePrimitives;
 using GameEngine.MathEngine;
 using GameEngine.Options;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Primitives
+namespace GameEngine.ObjectPrimitives
 {
 	public class VelocityObject : GameObject
 	{
@@ -12,8 +12,8 @@ namespace GameEngine.Primitives
 		private readonly float _rotationSpeed;
 		private readonly float _direction;
 
-		public VelocityObject(Camera camera, Vector2 position, Vector2 size, float velocity, float direction, float rotationSpeed = 0, IParentObject parent = null, MyTexture2D texture = null)
-			: base(camera, position, size, parent, texture)
+		public VelocityObject(BasicLevel level, Vector2 position, Vector2 size, float velocity, float direction, float rotationSpeed = 0, IWorldObject parent = null, MyTexture2D texture = null)
+			: base(level, position, size, parent, texture)
 		{
 			_velocity = velocity;
 			_rotationSpeed = rotationSpeed;

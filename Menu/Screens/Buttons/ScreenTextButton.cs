@@ -1,14 +1,12 @@
-﻿using GameEngine.CameraEngine;
-using GameEngine.Menu.ScreensAs.Buttons;
-using GameEngine.Primitives;
-using GameEngine.Properties;
+﻿using System;
+using GameEngine.CameraEngine;
+using GameEngine.Content;
+using GameEngine.Menu.Screens.Texts;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using GameEngine.Content;
-using GameEngine.Menu.Screens;
 
-namespace GameEngine.Menu
+namespace GameEngine.Menu.Screens.Buttons
 {
 
 	public enum ButtonClickState { Default, Pressed }

@@ -10,7 +10,7 @@ namespace GameEngine.ValueHolders
 		public Vector2 PrefferedScale;
 		public float BackForce = 0.015f; // the lower value the lower force
 		public float Friction = (0.93f); //tření - čím menší tím vyšší
-		float _mass = 3;
+		readonly float _mass = 3;
 
 		public Vector2 ActualVelocity = Vector2.Zero;
 

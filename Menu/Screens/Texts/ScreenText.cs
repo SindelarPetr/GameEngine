@@ -1,12 +1,12 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Primitives;
+using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace GameEngine.Menu
+namespace GameEngine.Menu.Screens.Texts
 {
-	public class ScreenText : TextObject, IMenuScreenElement
+	public class ScreenText : TextObject, IScreenObject
 	{
 		private Func<Vector2> _positionProvider;
 		private Func<float> _heightProvider;
@@ -37,14 +37,14 @@ namespace GameEngine.Menu
 
 
 		public ScreenText(Camera camera, SpriteFont font, string text, Func<Vector2> positionProvider, Func<float> heightProvider = null,
-			IParentObject parent = null)
+			IWorldObject parent = null)
 			: this(camera, font, text, positionProvider?.Invoke() ?? Vector2.Zero, heightProvider?.Invoke(), parent)
 		{
 			_positionProvider = positionProvider;
 			_heightProvider = heightProvider;
 		}
 
-		public ScreenText(Camera camera, SpriteFont font, string text, Vector2 position, float? height = null, IParentObject parent = null)
+		public ScreenText(Camera camera, SpriteFont font, string text, Vector2 position, float? height = null, IWorldObject parent = null)
 			: base(camera, font, text, position, height ?? font.MeasureString(text).Y, parent)
 		{
 		}
@@ -54,14 +54,14 @@ namespace GameEngine.Menu
 
 		}
 
-		public void Show(IMenuScreenElement showInitializator)
+		public void Show(IScreenObject showInitializator)
 		{
 
 		}
 
 		public void AllScreensLoaded()
 		{
-			
+
 		}
 
 		public void LooseTouches()

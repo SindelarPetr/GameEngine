@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameEngine.RunBasics
+namespace GameEngine.RunPrimitives
 {
 	/// <summary>
 	/// This attribute must be used on the assembly where all screen types are contained

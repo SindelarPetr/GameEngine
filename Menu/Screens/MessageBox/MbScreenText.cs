@@ -1,4 +1,4 @@
-﻿namespace GameEngine.Menu
+﻿namespace GameEngine.Menu.Screens.MessageBox
 {
 	//public class MbScreenText : ScreenText
 	//{

@@ -1,10 +1,12 @@
-﻿using GameEngine.Primitives;
+﻿using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using GameEngine.GamePrimitives;
+using GameEngine.Menu;
 
 namespace GameEngine.Effects
 {
-	public class EffectManager : IBaseElement, IEffectManager
+	public class EffectManager
 	{
 		private readonly List<IGameElement> _effects;
 

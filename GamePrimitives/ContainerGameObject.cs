@@ -1,23 +1,23 @@
-﻿using GameEngine.CameraEngine;
-using GameEngine.Properties;
-using System.Collections.Generic;
+﻿using GameEngine.ObjectPrimitives;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
-namespace GameEngine.Primitives
+namespace GameEngine.GamePrimitives
 {
 	public class ContainerGameObject : GameObject
 	{
 		protected List<IGameElement> GameElements;
 		protected bool DrawBackground;
 
-		public ContainerGameObject(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null, MyTexture2D texture = null) : base(camera, position, size, parent, texture)
+		public ContainerGameObject(BasicLevel level, Vector2 position, Vector2 size, IWorldObject parent = null, MyTexture2D texture = null) : base(level, position, size, parent, texture)
 		{
 			GameElements = new List<IGameElement>();
 			DrawBackground = false;
 		}
 
-		protected virtual void AddObject(IGameElement gameElement)
+		public virtual void AddObject(IGameElement gameElement)
 		{
 			GameElements.Add(gameElement);
 			gameElement.OnRemoving += GameElement_OnRemove;

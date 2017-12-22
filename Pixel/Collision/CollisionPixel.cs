@@ -1,13 +1,13 @@
 ﻿using FarseerPhysics.Dynamics;
-using GameEngine.CameraEngine;
 using GameEngine.Collisions;
 using GameEngine.Content;
+using GameEngine.GamePrimitives;
+using GameEngine.ObjectPrimitives;
 using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
-using GameEngine.Primitives;
 
-namespace GameEngine.Pixel
+namespace GameEngine.Pixel.Collision
 {
 	public class CollisionPixel : CollisionGameObject
 	{
@@ -19,7 +19,7 @@ namespace GameEngine.Pixel
 		public event EventHandler OnKilled;
 		public event EventHandler OnRevived;
 
-		public CollisionPixel(Camera camera, World world, Vector2 position, Vector2 size, IParentObject parent = null) : base(camera, world, position, size, parent, TextureManager.Box2)
+		public CollisionPixel(BasicLevel level, World world, Vector2 position, Vector2 size, IWorldObject parent = null) : base(level, world, position, size, parent, TextureManager.Box2)
 		{
 			_isAlive = true;
 

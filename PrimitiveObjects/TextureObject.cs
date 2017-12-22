@@ -1,11 +1,11 @@
-﻿using System;
-using GameEngine.CameraEngine;
+﻿using GameEngine.CameraEngine;
 using GameEngine.Content;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
-namespace GameEngine.Primitives
+namespace GameEngine.ObjectPrimitives
 {
 	/// <summary>
 	/// Takes BaseObject and form a texture object from him
@@ -19,7 +19,7 @@ namespace GameEngine.Primitives
 
 		public bool IsPattern { get; set; }
 
-		public TextureObject(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null, MyTexture2D texture = null)
+		public TextureObject(Camera camera, Vector2 position, Vector2 size, IWorldObject parent = null, MyTexture2D texture = null)
 			: base(camera, position, size, parent)
 		{
 			Texture = texture ?? TextureManager.Box2;
@@ -47,8 +47,8 @@ namespace GameEngine.Primitives
 						Vector2 partPosition = new Vector2(x, y) - originShift;
 						float width = Math.Min(Texture.Width, absoluteSize.X - x);
 						float height = Math.Min(Texture.Height, absoluteSize.Y - y);
-						Rectangle rectangle = new Rectangle(0,0, (int)width, (int)height);
-						
+						Rectangle rectangle = new Rectangle(0, 0, (int)width, (int)height);
+
 						spriteBatch.Draw(Texture, absolutePosition + partPosition, rectangle, color, absoluteRotation, Vector2.Zero, Vector2.One, SpriteEffects, 0f);
 					}
 				}

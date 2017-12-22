@@ -3,13 +3,14 @@ using GameEngine.Content;
 using GameEngine.Input;
 using GameEngine.MathEngine;
 using GameEngine.Menu;
+using GameEngine.ObjectPrimitives;
 using GameEngine.Options;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameEngine.RunBasics
+namespace GameEngine.RunPrimitives
 {
 	/// <summary>
 	/// This class outsources takes a care about all game logic

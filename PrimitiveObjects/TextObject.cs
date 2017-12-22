@@ -1,10 +1,9 @@
 using GameEngine.CameraEngine;
 using GameEngine.MathEngine;
-using GameEngine.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Menu
+namespace GameEngine.ObjectPrimitives
 {
 
 	public class TextObject : BaseObject
@@ -41,16 +40,16 @@ namespace GameEngine.Menu
 
 				_spriteFont = value;
 				TextSize = _spriteFont.MeasureString(_content);
-				
+
 				BasicSize = MyMath.ScaleByY(TextSize, height);
 			}
 		}
 		#endregion
 
-		public TextObject(Camera camera, SpriteFont spriteFont, string text, Vector2 position, IParentObject parent = null)
+		public TextObject(Camera camera, SpriteFont spriteFont, string text, Vector2 position, IWorldObject parent = null)
 			: this(camera, spriteFont, text, position, spriteFont.MeasureString(text).Y, parent) { }
 
-		public TextObject(Camera camera, SpriteFont spriteFont, string text, Vector2 position, float height, IParentObject parent = null)
+		public TextObject(Camera camera, SpriteFont spriteFont, string text, Vector2 position, float height, IWorldObject parent = null)
 			: base(camera, position, MyMath.ScaleByY(spriteFont.MeasureString(text), height), parent)
 		{
 			_content = text;

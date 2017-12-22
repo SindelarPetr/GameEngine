@@ -3,7 +3,7 @@ using GameEngine.MathEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Properties
+namespace GameEngine.PropertiesEngine
 {
 	public static class PrpertiesMath
 	{

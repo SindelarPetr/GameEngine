@@ -1,5 +1,6 @@
 ﻿using GameEngine.ValueHolders;
 using System;
+using GameEngine.Menu.Screens;
 
 namespace GameEngine.Menu
 {
@@ -8,7 +9,7 @@ namespace GameEngine.Menu
 		public ShowState ShowState { get; private set; } = ShowState.Hidden;
 
 		// Describes current progress of enabling or disabling
-		private Timer _showValue;
+		private readonly Timer _showValue;
 
 		public event EventHandler<float> OnShowed;
 		public event EventHandler<float> OnHidden;

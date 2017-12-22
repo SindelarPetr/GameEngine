@@ -1,11 +1,11 @@
-﻿using GameEngine.MathEngine;
+﻿using System.Collections.Generic;
+using GameEngine.MathEngine;
 using GameEngine.Options;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace GameEngine.Input
+namespace GameEngine.Input.TouchPanel
 {
 	public class MyState
 	{
@@ -38,7 +38,7 @@ namespace GameEngine.Input
 		public void Actualise(bool isActive)
 		{
 			#region Touches
-			TouchCollection newTouchLocations = TouchPanel.GetState();
+			TouchCollection newTouchLocations = Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState();
 			List<MyTouch> newMyTouches = new List<MyTouch>();
 
 			#region MouseTouch

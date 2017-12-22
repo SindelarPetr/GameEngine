@@ -1,29 +1,31 @@
-using GameEngine.CameraEngine;
-using GameEngine.Properties;
-using System;
+using GameEngine.ObjectPrimitives;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
+using System;
 
-namespace GameEngine.Primitives
+namespace GameEngine.GamePrimitives
 {
 	/// <summary>
 	/// This object adds the posibility of destroying and removing objects
 	/// </summary>
 	public class GameObject : TextureObject, IGameElement
 	{
+		public BasicLevel Level { get; }
+
 		/// <summary>
-		/// Is fired when the object disappears from the map.
+		/// Is fired when the object should dissapear from the map.
 		/// </summary>
 		public event EventHandler<IGameElement> OnRemoving;
 		public event EventHandler<IGameElement> OnDestroying;
 
-		public GameObject(Camera camera, Vector2 position, Vector2 size, IParentObject parent = null, MyTexture2D texture = null)
-			: base(camera, position, size, parent, texture)
+		public GameObject(BasicLevel level, Vector2 position, Vector2 size, IWorldObject parent = null, MyTexture2D texture = null)
+			: base(level.Camera, position, size, parent ?? level, texture)
 		{
-
+			Level = level;
 		}
 
 		/// <summary>
-		/// Will remove the object without effects.
+		/// Removes the object without effects.
 		/// </summary>
 		protected virtual void Remove()
 		{
@@ -31,7 +33,7 @@ namespace GameEngine.Primitives
 		}
 
 		/// <summary>
-		/// Will remove the object with effects.
+		/// Makes destruction effects and removes it.
 		/// </summary>
 		public virtual void Destroy()
 		{

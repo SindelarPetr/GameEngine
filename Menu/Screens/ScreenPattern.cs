@@ -1,8 +1,7 @@
 ﻿using GameEngine.CameraEngine;
 using GameEngine.Content;
-using GameEngine.Menu.ScreensAs;
 using GameEngine.Options;
-using GameEngine.Properties;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Menu.Screens

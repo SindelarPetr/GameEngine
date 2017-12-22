@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameEngine.Primitives
+namespace GameEngine.ObjectPrimitives
 {
-	public interface IBaseElement
+	public interface IPrimitiveElement
 	{
 		void Update();
 

@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameEngine.Input.TouchPanel;
+using Microsoft.Xna.Framework;
 
-namespace GameEngine.Input
+namespace GameEngine.Input.GameControls.TouchInput
 {
 	public class TouchControl
 	{

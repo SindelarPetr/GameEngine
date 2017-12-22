@@ -1,12 +1,12 @@
 ﻿using GameEngine.CameraEngine;
-using GameEngine.Primitives;
+using GameEngine.GamePrimitives;
 using Microsoft.Xna.Framework;
 
-namespace GameEngine.Pixel
+namespace GameEngine.Pixel.Simple
 {
 	public class SimplePixelObject : BasicPixelObject
 	{
-		public SimplePixelObject(Camera camera, Vector2 position, PixelDescription[,] pixelsDescription, Vector2 pixelsCount) : base(camera, position, pixelsDescription, pixelsCount)
+		public SimplePixelObject(BasicLevel level, Vector2 position, PixelDescription[,] pixelsDescription, Vector2 pixelsCount) : base(level, position, pixelsDescription, pixelsCount)
 		{
 
 		}
@@ -25,7 +25,7 @@ namespace GameEngine.Pixel
 					//if ((x % 2 == 0 && y % 2 == 0) || (x % 2 == 1 && y % 2 == 1)) pixelDescribtion = new PixelDescribtion(Color.Aqua);
 
 					Vector2 pixelIndex = new Vector2(x, y);
-					SimplePixel pixel = pixels[x, y] = new SimplePixel(Camera,
+					SimplePixel pixel = pixels[x, y] = new SimplePixel(Level,
 						PixelMath.PixelToGamePosition(pixelIndex, PixelsCount), PixelOptions.PixelSize);
 
 					// Change pixels color according to description.

@@ -1,16 +1,14 @@
-﻿using GameEngine.CameraEngine;
-using GameEngine.Menu.Screens;
-using GameEngine.Menu.ScreensAs;
-using GameEngine.Properties;
+﻿using System;
+using GameEngine.CameraEngine;
+using GameEngine.PropertiesEngine;
 using Microsoft.Xna.Framework;
-using System;
 
-namespace GameEngine.Menu
+namespace GameEngine.Menu.Screens
 {
 	/// <summary>
 	/// Adds a texture into screen container - most of controls have some "background" which this class provides. The texture has draw order of 3.
 	/// </summary>
-	public class ScreenTextureContainer : ScreenContainer
+	public class ScreenTextureContainer : ScreenBag
 	{
 		protected ScreenTexture ScreenTexture;
 

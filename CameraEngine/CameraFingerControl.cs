@@ -1,4 +1,5 @@
 ﻿using GameEngine.Input;
+using GameEngine.Input.TouchPanel;
 using GameEngine.Options;
 using Microsoft.Xna.Framework;
 
